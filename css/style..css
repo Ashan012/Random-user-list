@@ -10,7 +10,9 @@ body {
 }
 #mainHeader {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
 }
 .mainSec ul {
   display: flex;

@@ -6,12 +6,15 @@ const api = () => {
     rej("fail to fethch");
   });
 };
+document.getElementById("refresh").addEventListener("click", () => {
+  location.reload();
+});
 
-let firstname = [];
-let email = [];
-let phone = [];
-let img = [];
 const callApi = () => {
+  let firstname = [];
+  let email = [];
+  let phone = [];
+  let img = [];
   let data = api();
   data
     .then((res) => res.json())
