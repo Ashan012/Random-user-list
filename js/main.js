@@ -2,28 +2,36 @@
 
 const api = () => {
   return new Promise((res, rej) => {
-    res(fetch("https://randomuser.me/api"));
+    res(fetch("https://randomuser.me/api/?results=5"));
     rej("fail to fethch");
   });
 };
 
-let firstname = ["harry"];
+let firstname = [];
+let email = [];
+let phone = [];
+let img = [];
 const callApi = () => {
   let data = api();
   data
     .then((res) => res.json())
     .then((res) => {
-      console.log(res.results[0]);
-      let changeName = res.results[0].name.first;
-      document.getElementById("firstName").innerText = changeName;
+      for (let i = 0; i < 5; i++) {
+        firstname.push(res.results[i].name.first);
+        email.push(res.results[i].email);
+        phone.push(res.results[i].phone);
+        img.push(res.results[i].picture.large);
 
-      let email = res.results[0].email;
-      document.getElementById("email").innerText = email;
-      let phone = res.results[0].phone;
-      document.getElementById("phone").innerText = phone;
-      let img = res.results[0].picture.large;
-      document.getElementById("img").src = img;
-      console.log(img);
+        document.getElementsByClassName("firstName")[i].innerText =
+          firstname[i];
+
+        document.getElementsByClassName("email")[i].innerText = email[i];
+        document.getElementsByClassName("phone")[i].innerText = phone[i];
+        document.getElementsByClassName("img")[i].src = img[i];
+      }
+
+      console.log(firstname, email, phone, img);
     });
 };
+
 callApi();
